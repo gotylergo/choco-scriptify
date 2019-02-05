@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Choco-Scriptify</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="container">
+        <div class="page-header">
+            <h1>Choco-Scriptify</h1>
+        </div>
+        <div class="lead">
+            <p>Create a Chocolatey installer script from a group of selected packages.</p>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="template">Select a template:</label>
+                <select class="form-control" id="template">
+                    <option value="default">Default</option>
+                </select>
+            </div>
+            <p>Select packages:</p>
+            <div class="checkbox">
+                <label for="googleChrome"><input type="checkbox" id="googleChrome" name="googlechrome" value="googlechrome">
+                    googlechrome</label>
+            </div>
+            <div class="checkbox">
+                <label for="firefox"><input type="checkbox" id="firefox" name="firefox" value="firefox">
+                    firefox</label>
+            </div>
+            <div class="checkbox">
+                    <label for="libreoffice"><input type="checkbox" id="libreoffice" name="libreoffice" value="libreoffice">
+                        libreoffice-fresh</label>
+                </div>
+            <button type="submit">Download</button>
+        </form>
+    </div>
+    <script src="js/scriptify.js" async defer></script>
+</body>
+
+</html>
