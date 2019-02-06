@@ -27,27 +27,31 @@
         <div class="lead">
             <p>Create a Chocolatey installer script from a group of selected packages.</p>
         </div>
-        <form>
+        <form id="form">
             <div class="form-group">
                 <label for="template">Select a template:</label>
                 <select class="form-control" id="template">
                     <option value="default">Default</option>
                 </select>
             </div>
+            <div class="checkbox">
+                <label for="installchoco"><input type="checkbox" id="installChoco" name="installChoco" value="installChoco"> Install Chocolatey?</label>
+            </div>
             <p>Select packages:</p>
             <div class="checkbox">
-                <label for="googleChrome"><input type="checkbox" id="googleChrome" name="googlechrome" value="googlechrome">
+                <label for="googleChrome"><input class="selections" type="checkbox" id="googleChrome" name="googlechrome" value="googlechrome">
                     googlechrome</label>
             </div>
             <div class="checkbox">
-                <label for="firefox"><input type="checkbox" id="firefox" name="firefox" value="firefox">
+                <label for="firefox"><input class="selections" type="checkbox" id="firefox" name="firefox" value="firefox">
                     firefox</label>
             </div>
             <div class="checkbox">
-                    <label for="libreoffice"><input type="checkbox" id="libreoffice" name="libreoffice" value="libreoffice">
-                        libreoffice-fresh</label>
-                </div>
-            <button type="submit">Download</button>
+                <label for="libreoffice-fresh"><input class="selections" type="checkbox" id="libreoffice-fresh" name="libreoffice-fresh" value="libreoffice-fresh">
+                    libreoffice-fresh</label>
+            </div>
+            <button>Get Command</button>
+            <input id="command" type="text" class="form-control" readonly>
         </form>
     </div>
     <script src="js/scriptify.js" async defer></script>
