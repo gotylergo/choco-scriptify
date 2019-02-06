@@ -1,3 +1,42 @@
+// Setup templates
+
+let templates = {
+    default: [
+        'googlechrome',
+        'firefox',
+    ],
+    alternate: [
+        'libreoffice-fresh',
+        'powershell',
+    ],
+}
+
+// Fill out form based on templates
+
+document.getElementById('template').onchange = function () {
+    if (this.value === '') {
+        // document.getElementsByClassName('selections').checked = false;
+        var items = document.getElementsByClassName('selections');
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox')
+                items[i].checked = false;
+        }
+    } else {
+        for (const key of Object.keys(templates)) {
+            if (key === this.value) {
+                const packageList = templates[key];
+                packageList.forEach(
+                    function(item) {
+                        document.getElementById(item).checked = true;
+                    }
+                )
+            }
+        }
+    };
+};
+
+// Generate command from script
+
 let form = document.querySelector('#form');
 
 form.addEventListener('submit', function (e) {

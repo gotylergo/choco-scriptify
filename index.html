@@ -31,26 +31,33 @@
             <div class="form-group">
                 <label for="template">Select a template:</label>
                 <select class="form-control" id="template">
+                    <option value=""></option>
                     <option value="default">Default</option>
+                    <option value="alternate">Alternate</option>
                 </select>
             </div>
             <div class="checkbox">
-                <label for="installchoco"><input type="checkbox" id="installChoco" name="installChoco" value="installChoco"> Install Chocolatey?</label>
+                <label for="installchoco"><input type="checkbox" id="installChoco" value="installChoco" checked>
+                    Install Chocolatey?</label>
             </div>
             <p>Select packages:</p>
             <div class="checkbox">
-                <label for="googleChrome"><input class="selections" type="checkbox" id="googleChrome" name="googlechrome" value="googlechrome">
+                <label for="googlechrome"><input class="selections" type="checkbox" id="googlechrome" value="googlechrome">
                     googlechrome</label>
             </div>
             <div class="checkbox">
-                <label for="firefox"><input class="selections" type="checkbox" id="firefox" name="firefox" value="firefox">
+                <label for="firefox"><input class="selections" type="checkbox" id="firefox" value="firefox">
                     firefox</label>
             </div>
             <div class="checkbox">
-                <label for="libreoffice-fresh"><input class="selections" type="checkbox" id="libreoffice-fresh" name="libreoffice-fresh" value="libreoffice-fresh">
+                <label for="libreoffice-fresh"><input class="selections" type="checkbox" id="libreoffice-fresh" value="libreoffice-fresh">
                     libreoffice-fresh</label>
             </div>
-            <button>Get Command</button>
+            <div class="checkbox">
+                <label for="powershell"><input class="selections" type="checkbox" id="powershell" value="powershell">
+                    powershell</label>
+            </div>
+            <button class="btn btn-dark">Get Command</button>
             <input id="command" type="text" class="form-control" readonly>
         </form>
     </div>
