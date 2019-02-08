@@ -8,3 +8,7 @@ Select a template or check off packages manually to generate a short Chocolatey 
 
 - JavaScript
 - Bootstrap
+
+## Author:
+
+[https://github.com/gotylergo]
