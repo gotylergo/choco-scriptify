@@ -27,37 +27,43 @@
         <div class="lead">
             <p>Create a Chocolatey installer script from a group of selected packages.</p>
         </div>
+        <h2>Instructions:</h2>
+        <ol>
+            <li>Select a template or select the packages to install.</li>
+            <ul>
+                <li>Hint: to clear the list, select the blank template.</li>
+            </ul>
+            <li>Click 'Get Command.'</li>
+            <li>Copy & Paste the generated command into an elevated CMD promt and click Enter.</li>
+        </ol>
         <form id="form">
             <div class="form-group">
                 <label for="template">Select a template:</label>
                 <select class="form-control" id="template">
                     <option value=""></option>
-                    <option value="default">Default</option>
-                    <option value="alternate">Alternate</option>
+                    <option value="ibhq">ibhq</option>
+                    <option value="df">df</option>
+                    <option value="ibhq-conference-room">ibhq-conference-room</option>
+                    <option value="ibhq-finance">ibhq-finance</option>
+                    <option value="carsdirect">carsdirect</option>
+                    <option value="imx">imx</option>
+                    <option value="ibhq-netdriven">ibhq-netdriven</option>
                 </select>
             </div>
-            <div class="checkbox">
-                <label for="installchoco"><input type="checkbox" id="installChoco" value="installChoco" checked>
-                    Install Chocolatey?</label>
+            <div id="options">
+                <div class="checkbox">
+                    <label for="installchoco"><input type="checkbox" id="installChoco" value="installChoco" checked>
+                        Install Chocolatey?</label>
+                </div>
+                <div class="checkbox">
+                        <label for="isLaptop"><input type="checkbox" id="isLaptop" value="isLaptop">
+                            Laptop? (Forticlient?)</label>
+                    </div>
             </div>
             <p>Select packages:</p>
-            <div class="checkbox">
-                <label for="googlechrome"><input class="selections" type="checkbox" id="googlechrome" value="googlechrome">
-                    googlechrome</label>
+            <div id="packages">
             </div>
-            <div class="checkbox">
-                <label for="firefox"><input class="selections" type="checkbox" id="firefox" value="firefox">
-                    firefox</label>
-            </div>
-            <div class="checkbox">
-                <label for="libreoffice-fresh"><input class="selections" type="checkbox" id="libreoffice-fresh" value="libreoffice-fresh">
-                    libreoffice-fresh</label>
-            </div>
-            <div class="checkbox">
-                <label for="powershell"><input class="selections" type="checkbox" id="powershell" value="powershell">
-                    powershell</label>
-            </div>
-            <button class="btn btn-dark">Get Command</button>
+            <button id="commandButton" class="btn btn-dark">Get Command</button>
             <input id="command" type="text" class="form-control" readonly>
         </form>
     </div>
