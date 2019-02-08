@@ -1,17 +1,50 @@
+let allPackages = [
+
+    'powershell', // Install Powershell first (see notes)
+    '7zip',
+    'adobereader',
+    'chocolateypackageupdater',
+    'everynote',
+    'firefox',
+    'flashplayerplugin',
+    'googlechrome',
+    'hipchat',
+    'jre8',
+    'libreoffice-fresh',
+    'notepadplusplus',
+    'skype',
+    'teamviewer',
+]
+
 // Setup templates
 
 let templates = {
-    default: [
-        'googlechrome',
+    'gen': [
+        'powershell', // Install Powershell first (see notes)
+        'adobereader',
+        'chocolateypackageupdater',
         'firefox',
-    ],
-    alternate: [
+        'flashplayerplugin',
+        'googlechrome',
+        'jre8',
         'libreoffice-fresh',
-        'powershell',
-    ],
+        ],
 }
 
-// Fill out form based on templates
+// Create checkboxes from allPackages array
+
+let packageCheckbox = function(packageName) {
+    return(`<div class="checkbox">
+<label for="${packageName}"><input class="selections" type="checkbox" id="${packageName}" value="${packageName}">
+${packageName}</label>
+</div>`)
+}
+
+for (package in allPackages) {
+    document.getElementById('packages').innerHTML += packageCheckbox(allPackages[package]);
+}
+
+// Tick of checkboxes when a template is selected
 
 document.getElementById('template').onchange = function () {
     if (this.value === '') {
@@ -26,7 +59,7 @@ document.getElementById('template').onchange = function () {
             if (key === this.value) {
                 const packageList = templates[key];
                 packageList.forEach(
-                    function(item) {
+                    function (item) {
                         document.getElementById(item).checked = true;
                     }
                 )
@@ -35,14 +68,15 @@ document.getElementById('template').onchange = function () {
     };
 };
 
-// Generate command from script
+// Generate Chocolatey command from script
 
 let form = document.querySelector('#form');
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     let installChoco = document.getElementById('installChoco').checked;
-    let chocoInstaller = `@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin;"`;
+    let isLaptop = document.getElementById('isLaptop').checked;
+    let chocoInstaller = '';
     let packageList = '';
     let script = '';
 
@@ -54,11 +88,14 @@ form.addEventListener('submit', function (e) {
         }
     }
 
-    if (!installChoco) {
-        chocoInstaller = '';
+    if (installChoco) {
+        chocoInstaller = `@"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin"`
+    } else {
+        chocoInstaller = '';  
     }
 
-    script = `${chocoInstaller}choco install ${packageList} -y;`;
+
+    script = `${chocoInstaller} & choco install ${fortiInstaller}${packageList} -y;`;
 
     document.getElementById('command').value = script;
     document.getElementById('command').select();
