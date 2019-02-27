@@ -2,6 +2,30 @@
     margin-top: 3em;
 }
 
+#options,
+#packages {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media only screen and (min-width: 425px) {
+    #options,
+    #packages {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 525px) {
+    #options,
+    #packages {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+#commandButton {
+    margin-top: 2em;
+}
+
 #command {
-    margin-top: 1em;
+    margin: 1em auto 2em auto;
 }
