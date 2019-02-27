@@ -30,8 +30,7 @@ let templates = {
         'adobereader',
         'evernote',
         'libreoffice-fresh',
-        'powershell',
-    ],
+        ],
 }
 
 // Set a VPN client package to install
@@ -91,7 +90,7 @@ document.getElementById('template').onchange = function () {
     };
 };
 
-// Generate command from script
+// Generate Chocolatey command from script
 
 let form = document.querySelector('#form');
 
