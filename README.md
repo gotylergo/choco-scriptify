@@ -2,7 +2,7 @@
 
 [Live demo](https://choco-scriptify.tylerjustyn.com)
 
-Create a chocolatey installer script from a group of selected packages.
+Original Javascript web app to create a chocolatey installer script from a group of selected packages.
 
 ![Choco-Scriptify Screenshot](http://i65.tinypic.com/20pob3t.png)
 
