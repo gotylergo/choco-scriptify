@@ -1,37 +1,22 @@
+'use strict'
+
 // This array is used to create the checkboxes in the html
 
-let allPackages = [
-    'powershell',
-    '7zip',
-    'adobereader',
-    'evernote',
-    'firefox',
-    'googlechrome',
-    'hipchat',
-    'jre8',
-    'libreoffice-fresh',
-    'notepadplusplus',
-    'opera',
-    'skype',
-    'teamviewer',
-]
-
-// Setup templates
-
-let templates = {
-    'web-browsers': [
-        'powershell',
-        'googlechrome',
-        'firefox',
-        'opera',
-    ],
-    'office': [
-        'powershell',
-        'adobereader',
-        'evernote',
-        'libreoffice-fresh',
-    ],
-}
+// let allPackages = [
+//     'powershell',
+//     '7zip',
+//     'adobereader',
+//     'evernote',
+//     'firefox',
+//     'googlechrome',
+//     'hipchat',
+//     'jre8',
+//     'libreoffice-fresh',
+//     'notepadplusplus',
+//     'opera',
+//     'skype',
+//     'teamviewer',
+// ]
 
 // Set a VPN client package to install
 
@@ -47,18 +32,26 @@ if (usingIE) {
     document.getElementById("ifIE").style.display = "none";
 }
 
-
-// Create template selections from templates array
+// Create template selections from imported JSON
 
 let templateOption = function (templateName) {
     return (`<option value="${templateName}">${templateName}</option>`)
 }
+let allPackages = [];
 
-for (let template in templates) {
-    if (templates.hasOwnProperty(template)) {
-        document.getElementById('template').innerHTML += templateOption(template);
-    }
-}
+let templatesReq = new Request('./js/config.json');
+
+fetch(templatesReq)
+    .then(function (res) {
+        return res.json();
+    })
+    .then(function (templates) {
+        for (let template in templates) {
+            // Add templates to template drop down
+            document.getElementById('template').innerHTML += templateOption(template);
+        }
+    })
+    .catch(error => console.log(error));
 
 // Create checkboxes from allPackages array
 

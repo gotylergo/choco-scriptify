@@ -1,0 +1,14 @@
+{
+    "web-browsers": [
+        "powershell",
+        "googlechrome",
+        "firefox",
+        "opera"
+    ],
+    "office": [
+        "powershell",
+        "adobereader",
+        "evernote",
+        "libreoffice-fresh"
+    ]
+}
