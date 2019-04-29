@@ -1,6 +1,6 @@
 # Choco-Scriptify
 
-[Live demo](https://choco-scriptify.tylerjustyn.com)
+[Live demo](https://www.tylerjustyn.dev/app/choco-scriptify/)
 
 Original Javascript web app to create a Chocolatey installer script from a group of selected packages.
 
@@ -32,4 +32,4 @@ To change:
 ## Author:
 
 - [GitHub](https://github.com/gotylergo)
-- [Portfolio](https://dev.tylerjustyn.com)
+- [Portfolio](https://www.tylerjustyn.dev)
