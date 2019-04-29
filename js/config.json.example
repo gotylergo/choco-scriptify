@@ -1,4 +1,5 @@
 {
+    "vpn": "openvpn",
     "web-browsers": [
         "powershell",
         "googlechrome",

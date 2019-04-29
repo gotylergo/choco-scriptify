@@ -1,27 +1,5 @@
 'use strict'
 
-// This array is used to create the checkboxes in the html
-
-// let allPackages = [
-//     'powershell',
-//     '7zip',
-//     'adobereader',
-//     'evernote',
-//     'firefox',
-//     'googlechrome',
-//     'hipchat',
-//     'jre8',
-//     'libreoffice-fresh',
-//     'notepadplusplus',
-//     'opera',
-//     'skype',
-//     'teamviewer',
-// ]
-
-// Set a VPN client package to install
-
-let vpn = 'openvpn'
-
 // Warn IE users to use a modern browser
 
 const usingIE = /Trident|MSIE/.test(navigator.userAgent);
@@ -39,31 +17,64 @@ let templateOption = function (templateName) {
 }
 let allPackages = [];
 
+let templates = {};
+
+let vpn = '';
+
 let templatesReq = new Request('./js/config.json');
 
 fetch(templatesReq)
     .then(function (res) {
+        if (!res.ok) {
+            throw Error(res.statusText);
+        }
         return res.json();
     })
-    .then(function (templates) {
-        for (let template in templates) {
-            // Add templates to template drop down
+    .then(function (res) {
+        // Assign VPN from config, then remove from res object
+        vpn = res['vpn'];
+        delete res.vpn;
+        return res;
+    })
+    .then(function (res) {
+        templates = res;
+        // Add templates to template drop down
+        let templateArr = Object.keys(res);
+        templateArr.forEach(function (template) {
             document.getElementById('template').innerHTML += templateOption(template);
+        });
+        return res;
+    })
+    .then(function (templates) {
+        // Add packages to allPackages array
+        const packageArray = Object.values(templates);
+        packageArray.forEach(function (arr) {
+            arr.forEach(function (pkg) {
+                // Check if package already exists, otherwise add it
+                if (allPackages.indexOf(pkg)) {
+                    allPackages.push(pkg)
+                }
+            })
+        })
+        return allPackages = allPackages.sort();
+    })
+    .then(function (allPackages) {
+        // Create checkboxes from allPackages array
+        for (let pkg in allPackages) {
+            document.getElementById('packages').innerHTML += packageCheckbox(allPackages[pkg]);
         }
     })
-    .catch(error => console.log(error));
+    .catch(function (error) {
+        console.log(`Couldn't fetch config.json: ${error}. \nDid you create one?`);
+    });
 
-// Create checkboxes from allPackages array
+// Checkbox template
 
 let packageCheckbox = function (packageName) {
     return (`<div class="checkbox">
 <label for="${packageName}"><input class="selections" type="checkbox" id="${packageName}" value="${packageName}">
 ${packageName}</label>
 </div>`)
-}
-
-for (let pkg in allPackages) {
-    document.getElementById('packages').innerHTML += packageCheckbox(allPackages[pkg]);
 }
 
 // Tick of checkboxes when a template is selected
