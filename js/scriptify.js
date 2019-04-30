@@ -21,7 +21,7 @@ let templates = {};
 
 let vpn = '';
 
-let templatesReq = new Request('./js/config.json');
+let templatesReq = new Request('./config.json');
 
 fetch(templatesReq)
     .then(function (res) {
