@@ -51,11 +51,11 @@ fetch(templatesReq)
         packageArray.forEach(function (arr) {
             arr.forEach(function (pkg) {
                 // Check if package already exists, otherwise add it
-                if (allPackages.indexOf(pkg)) {
-                    allPackages.push(pkg)
-                }
-            })
-        })
+                if (!allPackages.includes(pkg)) {
+                    allPackages.push(pkg);
+                };
+            });
+        });
         return allPackages = allPackages.sort();
     })
     .then(function (allPackages) {
@@ -65,7 +65,7 @@ fetch(templatesReq)
         }
     })
     .catch(function (error) {
-        console.log(`Couldn't fetch config.json: ${error}. \nDid you create one?`);
+        console.log(`Couldn't fetch config.json: ${error}. \nDid you create it?`);
     });
 
 // Checkbox template
