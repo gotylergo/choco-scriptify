@@ -162,6 +162,7 @@ form.addEventListener('submit', function (e) {
 
     document.getElementById('command').value = script;
     document.getElementById('command').select();
-    console.log(`Script: \n \n${script}`)
+    console.log(`Script:
+    \n${script}`)
 
 })
