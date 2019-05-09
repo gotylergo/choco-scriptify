@@ -129,8 +129,6 @@ form.addEventListener('submit', function (e) {
     let installChoco = document.getElementById('installChoco').checked;
     let isLaptop = document.getElementById('isLaptop').checked;
     let chocoInstaller = `@"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin" && set choco=%ALLUSERSPROFILE%\\chocolatey\\bin\\choco.exe ${repo}`;
-    console.log(repo);
-    console.log(chocoInstaller);
     let chocoInstall = 'choco install';
     let packageList = '';
     let condExec = '&&'
@@ -164,5 +162,6 @@ form.addEventListener('submit', function (e) {
 
     document.getElementById('command').value = script;
     document.getElementById('command').select();
+    console.log(`Script: \n \n${script}`)
 
 })
