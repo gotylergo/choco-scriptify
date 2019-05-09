@@ -40,11 +40,15 @@ fetch(templatesReq)
     })
     .then(function (res) {
         // Assign Repository from config, then remove from res object
-        if (res['repoLocation'].length < 0) {
-        repo = `; choco source add -s ${res['repoLocation']}`;
-
+        if (res['repoLocation'].length > 0) {
+            let repoName = '';
+            if (res['repoName'].length > 0) {
+                repoName = `-n=${res['repoName']} `;
+            }
+            repo = `& choco source add ${repoName}-s "${res['repoLocation']}"`;
         }
-        delete res.repo;
+        delete res.repoLocation
+        delete res.repoName;
         return res;
     })
     .then(function (res) {
@@ -125,7 +129,8 @@ form.addEventListener('submit', function (e) {
     let installChoco = document.getElementById('installChoco').checked;
     let isLaptop = document.getElementById('isLaptop').checked;
     let chocoInstaller = `@"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin" && set choco=%ALLUSERSPROFILE%\\chocolatey\\bin\\choco.exe ${repo}`;
-    
+    console.log(repo);
+    console.log(chocoInstaller);
     let chocoInstall = 'choco install';
     let packageList = '';
     let condExec = '&&'
