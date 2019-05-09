@@ -21,6 +21,8 @@ let templates = {};
 
 let vpn = '';
 
+let repo = '';
+
 let templatesReq = new Request('./config.json');
 
 fetch(templatesReq)
@@ -34,6 +36,15 @@ fetch(templatesReq)
         // Assign VPN from config, then remove from res object
         vpn = res['vpn'];
         delete res.vpn;
+        return res;
+    })
+    .then(function (res) {
+        // Assign Repository from config, then remove from res object
+        if (res['repoLocation'].length < 0) {
+        repo = `; choco source add -s ${res['repoLocation']}`;
+
+        }
+        delete res.repo;
         return res;
     })
     .then(function (res) {
@@ -113,7 +124,8 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     let installChoco = document.getElementById('installChoco').checked;
     let isLaptop = document.getElementById('isLaptop').checked;
-    let chocoInstaller = `@"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin" && set choco=%ALLUSERSPROFILE%\\chocolatey\\bin\\choco.exe`;
+    let chocoInstaller = `@"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin" && set choco=%ALLUSERSPROFILE%\\chocolatey\\bin\\choco.exe ${repo}`;
+    
     let chocoInstall = 'choco install';
     let packageList = '';
     let condExec = '&&'

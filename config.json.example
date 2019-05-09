@@ -1,5 +1,6 @@
 {
     "vpn": "openvpn",
+    "repo": '',
     "web-browsers": [
         "powershell",
         "googlechrome",
