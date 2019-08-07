@@ -46,9 +46,9 @@ fetch(templatesReq)
             let repoName = '';
             repoURL = res['repoLocation'];
             if (res['repoName'].length > 0) {
-                repoName = `-n=${res['repoName']} `;
+                repoName = `-n=${res['repoName']}`;
             }
-            repo = `& choco source add ${repoName}-s "${repoURL}"`;
+            repo = `& choco source add ${repoName} -s "${repoURL}" --priority=1`;
         } else {
             repoURL = 'https://chocolatey.org';
         }
@@ -160,7 +160,7 @@ form.addEventListener('submit', function (e) {
         chocoInstall = '';
         condExec = '';
     } else {
-        chocoInstall = `choco install ${packageList} -y`
+        chocoInstall = `choco install ${packageList}-y`
     }
 
     script = `${chocoInstaller} ${condExec} ${chocoInstall}`;
