@@ -6,7 +6,7 @@ Original Javascript web app to create a Chocolatey installer script from a group
 
 **Important Update:** _To make updating the script easier and prevent merge conflicts, allPackages, templates, and vpn choices have been moved out of script.js and require a config.json file. allPackages will be automatically generated from the arrays in the JSON. See the config.json.example file for reference._
 
-![Choco-Scriptify Screenshot](http://i65.tinypic.com/20pob3t.png)
+![Choco-Scriptify Screenshot](https://tylerjustyn.dev/img/chocoscriptify.png)
 
 ## How to Use
 
