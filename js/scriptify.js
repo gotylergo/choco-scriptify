@@ -179,7 +179,7 @@ form.addEventListener('submit', function (e) {
 
     script = `${chocoInstaller} ${condExec} ${chocoInstall}`;
 
-    document.getElementById('command').value = script;
+    document.getElementById('command').value = script.trim();
     document.getElementById('command').select();
     console.log(`Script:
     \n${script}`)
