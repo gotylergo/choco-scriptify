@@ -174,7 +174,7 @@ form.addEventListener('submit', function (e) {
         chocoInstall = '';
         condExec = '';
     } else {
-        chocoInstall = `choco install ${packageList}-y`
+        chocoInstall = `choco install ${packageList}-y --source=${repoName}`
     }
 
     script = `${chocoInstaller} ${condExec} ${chocoInstall}`;
