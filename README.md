@@ -22,6 +22,7 @@ To change:
 
 - **the VPN client**: Modify the value of the VPN key in the config.json file.
 - **custom repository**: Modify the value of the repoName and repoLocation keys in the config.json file
+- **choco install source**: Modify the value of the chocoInstallLocation key in the config.json file
 - **the templates**: Update/add arrays in your config.json file. Any packages within the templates will get checkboxes in the HTML as well.
 
 ## Technologies Used: 
