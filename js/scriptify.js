@@ -15,19 +15,24 @@ if (usingIE) {
 let templateOption = function (templateName) {
     return (`<option value="${templateName}">${templateName}</option>`)
 }
+
 let allPackages = [];
 
 let templates = {};
 
 let vpn = '';
 
-let repo = '';
+let repoAddCMD = '';
 
-let repoURL = 'https://chocolatey.org'
+let chocoInstallLocation = 'https://chocolatey.org/install.ps1';
 
-let templatesReq = new Request('./config.json');
+let repoName = 'chocolatey';
 
-fetch(templatesReq)
+let repoLocation = 'https://chocolatey.org/api/v2/'
+
+let configReq = new Request('./config.json');
+
+fetch(configReq)
     .then(function (res) {
         if (!res.ok) {
             throw Error(res.statusText);
@@ -35,25 +40,34 @@ fetch(templatesReq)
         return res.json();
     })
     .then(function (res) {
-        // Assign VPN from config, then remove from res object
-        vpn = res['vpn'];
-        delete res.vpn;
+        // Assign choco install URL from config, or set to default
+        if (res['chocoInstallLocation'].length > 0) {
+            chocoInstallLocation = res['chocoInstallLocation'];
+        }
+        delete res.chocoInstallLocation;
         return res;
     })
     .then(function (res) {
         // Assign Repository from config, then remove from res object
         if (res['repoLocation'].length > 0) {
-            let repoName = '';
-            repoURL = res['repoLocation'];
+            repoLocation = res['repoLocation'];
+            let repoNameParam = '';
             if (res['repoName'].length > 0) {
-                repoName = `-n=${res['repoName']}`;
+                repoName = res['repoName'];
+                repoNameParam = `-n=${repoName}`;
             }
-            repo = `& choco source add ${repoName} -s "${repoURL}" --priority=1`;
+            repoAddCMD = `& choco source add ${repoNameParam} -s "${repoLocation}" --priority=1`;
         } else {
-            repoURL = 'https://chocolatey.org';
+            repoName = 'chocolatey'
         }
         delete res.repoLocation
         delete res.repoName;
+        return res;
+    })
+    .then(function (res) {
+        // Assign VPN from config, then remove from res object
+        vpn = res['vpn'];
+        delete res.vpn;
         return res;
     })
     .then(function (res) {
@@ -133,7 +147,7 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     let installChoco = document.getElementById('installChoco').checked;
     let isLaptop = document.getElementById('isLaptop').checked;
-    let chocoInstaller = `@"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('${repoURL}/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin" && set choco=%ALLUSERSPROFILE%\\chocolatey\\bin\\choco.exe ${repo}`;
+    let chocoInstaller = `@"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('${chocoInstallLocation}'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\\chocolatey\\bin" && set choco=%ALLUSERSPROFILE%\\chocolatey\\bin\\choco.exe ${repoAddCMD}`;
     let chocoInstall = 'choco install';
     let packageList = '';
     let condExec = '&&'

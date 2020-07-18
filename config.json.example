@@ -1,7 +1,8 @@
 {
-    "vpn": "openvpn",
+    "chocoInstallLocation": "",
     "repoName": "",
     "repoLocation": "",
+    "vpn": "openvpn",
     "web-browsers": [
         "powershell",
         "googlechrome",
