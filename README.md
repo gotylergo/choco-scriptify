@@ -1,16 +1,16 @@
 # Choco-Scriptify
 
-[Live demo](https://www.tylerjustyn.dev/app/choco-scriptify/)
+[Live demo](https://gotylergo.github.io/choco-scriptify/)
 
 Original Javascript web app to create a Chocolatey installer script from a group of selected packages.
 
-**Important Update:** _To make updating the script easier and prevent merge conflicts, allPackages, templates, and vpn choices have been moved out of script.js and require a config.json file. allPackages will be automatically generated from the arrays in the JSON. See the config.json.example file for reference._
+**Important Update:** _To make updating the script easier and prevent merge conflicts, allPackages, templates, and vpn choices have been moved out of script.js and require a config.json file. allPackages will be automatically generated from the arrays in the JSON. See the config.json file for reference._
 
-![Choco-Scriptify Screenshot](https://tylerjustyn.dev/img/chocoscriptify.png)
+![Choco-Scriptify Screenshot](img/screenshot.png)
 
 ## How to Use
 
-1. First, rename config.json.example to config.json.
+1. Update config.json with the templates and packages.
 2. Open the index.html file in a web browser.
 3. Select a template or check off packages manually to generate a short Chocolatey script to install the packages.
 
@@ -34,4 +34,4 @@ To change:
 ## Author:
 
 - [GitHub](https://github.com/gotylergo)
-- [Portfolio](https://www.tylerjustyn.dev)
+- [Portfolio](https://tylerj.dev)
